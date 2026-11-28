@@ -1,6 +1,6 @@
 # Notes for coding agents
 
-This repository is SAP UI MCP: an MCP server, a CLI (`sap-ui-automation`) and an SDK that see and drive SAP screens. People are in
+This repository is SAP UI MCP: an MCP server, a CLI (`sap-ui-automation`) and an SDK that see and interact with SAP screens. People are in
 [CONTRIBUTING.md](CONTRIBUTING.md); this file is the short version for agents.
 
 ## Commands

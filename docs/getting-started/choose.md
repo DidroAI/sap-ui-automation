@@ -30,7 +30,7 @@ Web GUI and Fiori run in Google Chrome. Pick a browser mode
 | You want | Mode | What you do |
 | --- | --- | --- |
 | nothing to set up in Chrome | `launch` (the default) | log on to SAP in the Chrome window the server opens ([guide](../guides/chrome.md#the-sap-window-launch-the-default)) |
-| your everyday Chrome, with its single sign-on, and only your SAP tabs shared | `extension` | install the UI Automation for SAP extension, pair it, register your systems ([guide](../guides/chrome.md#use-your-everyday-chrome-with-the-extension)) |
+| your everyday Chrome, with its single sign-on, and only your SAP tabs shared | `extension` | install the SAP UI MCP extension, pair it, register your systems ([guide](../guides/chrome.md#use-your-everyday-chrome-with-the-extension)) |
 | your everyday Chrome or Edge, without an extension | `attach` | allow remote debugging in `chrome://inspect` ([guide](../guides/chrome.md#your-chrome-with-remote-debugging-attach)) |
 
 Then go to [Which agent?](#which-agent).

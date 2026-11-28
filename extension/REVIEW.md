@@ -2,7 +2,7 @@
 
 > A record of the review of extension version 0.3.0, kept as it was. The
 > extension was called "Agent Connector for SAP Systems" then; it is now
-> **UI Automation for SAP**, and its icon is a lit pointer on a navy tile,
+> **SAP UI MCP**, and its icon is the SAP logo with a pointer on a navy tile,
 > not the `>_` mark findings U5 and F12 discuss. Current behaviour is in
 > [README.md](README.md) and [PROTOCOL.md](PROTOCOL.md).
 

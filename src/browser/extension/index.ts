@@ -19,8 +19,8 @@ type Env = Record<string, string | undefined>;
 /** An MV3 service worker sleeps after 30 s idle; when asleep it reconnects on its next wake-up. */
 const DEFAULT_WAIT_S = 35;
 
-const INSTALL = `Install the UI Automation for SAP extension from the Chrome Web Store (${STORE_URL}), then run \`npx -y sap-ui-automation setup --extension\` and restart Chrome once.`;
-const PAIR = `Pair it: click the UI Automation for SAP icon in Chrome's toolbar and Pair in the side panel (or run \`npx -y sap-ui-automation extension pair\` and paste the code it prints).`;
+const INSTALL = `Install the SAP UI MCP extension from the Chrome Web Store (${STORE_URL}), then run \`npx -y sap-ui-automation setup --extension\` and restart Chrome once.`;
+const PAIR = `Pair it: click the SAP UI MCP icon in Chrome's toolbar and Pair in the side panel (or run \`npx -y sap-ui-automation extension pair\` and paste the code it prints).`;
 
 let relay: ExtensionRelay | undefined;
 /** When the relay started listening: the wait for the extension counts from then, not again for every call. */
@@ -90,11 +90,11 @@ async function connected(r: ExtensionRelay, ms: number, stopOnRefusal = false): 
 /** The one step to take when no extension is connected. `chromeUp`: is Chrome running (undefined: unknown)? */
 function missingStep(info: ExtensionInfo, waitedS: number, chromeUp?: boolean): string {
   if (info.lastRefusal === "code")
-    return `The UI Automation for SAP extension tried to connect with a pairing code that does not match this server's. Ask the user to click the extension's icon in Chrome and Pair again (or run \`npx -y sap-ui-automation extension pair\` and paste the code it prints).`;
-  if (info.lastRefusal === "busy") return "Another sap-ui-automation is connected to the user's UI Automation for SAP extension already (one server at a time). Ask the user to close the other agent app that uses it, then click Reconnect in the extension's Settings.";
-  if (info.attempts > 0) return `The UI Automation for SAP extension reached the server but did not pair. ${PAIR}`;
+    return `The SAP UI MCP extension tried to connect with a pairing code that does not match this server's. Ask the user to click the extension's icon in Chrome and Pair again (or run \`npx -y sap-ui-automation extension pair\` and paste the code it prints).`;
+  if (info.lastRefusal === "busy") return "Another sap-ui-automation is connected to the user's SAP UI MCP extension already (one server at a time). Ask the user to close the other agent app that uses it, then click Reconnect in the extension's Settings.";
+  if (info.attempts > 0) return `The SAP UI MCP extension reached the server but did not pair. ${PAIR}`;
   if (chromeUp === false) return `Google Chrome is not running, so the extension cannot connect. Ask the user to open Chrome (the extension connects within a few seconds), then try again.`;
-  return `No UI Automation for SAP extension connected within ${waitedS} s${chromeUp ? " although Chrome is running" : ""}: it is not installed, switched off in chrome://extensions, or in another Chrome profile. ${INSTALL} Then: ${PAIR}`;
+  return `No SAP UI MCP extension connected within ${waitedS} s${chromeUp ? " although Chrome is running" : ""}: it is not installed, switched off in chrome://extensions, or in another Chrome profile. ${INSTALL} Then: ${PAIR}`;
 }
 
 /** Is Google Chrome running? undefined when this cannot be told. */
@@ -146,7 +146,7 @@ export async function extensionEndpoint(env: Env = process.env, waitMs: number =
   const left = Math.max(MIN_WAIT_MS, startedAt + waitMs - Date.now());
   if (!(await connected(r, Math.min(waitMs, left)))) throw new Error(missingStep(r.extensionInfo(), Math.round((Date.now() - startedAt) / 1000)));
   const version = /(?:Chrome|Chromium)\/([\d.]+)/.exec(r.extensionInfo().userAgent ?? "")?.[1] ?? "";
-  return { url: r.cdpUrl, kind: "extension", from: `the UI Automation for SAP extension in Chrome${version ? ` ${version}` : ""} (port ${r.port})` };
+  return { url: r.cdpUrl, kind: "extension", from: `the SAP UI MCP extension in Chrome${version ? ` ${version}` : ""} (port ${r.port})` };
 }
 
 /**
@@ -214,7 +214,7 @@ export async function extensionDoctor(env: Env = process.env, waitMs: number = d
     const info = r.extensionInfo();
     if (info.lastRefusal === "code") return [{ ok: false, check, detail: "the extension is installed but holds another pairing code", fix: 'Click its icon and Pair again (or run `npx -y sap-ui-automation extension pair` and paste the code it prints).' }];
     if (info.attempts > 0) return [{ ok: false, check, detail: "the extension is installed but not paired with this server", fix: PAIR }];
-    return [{ ok: false, check, detail: `no UI Automation for SAP extension connected to port ${r.port} within ${Math.round(waitMs / 1000)} s`, fix: `${INSTALL} Then: ${PAIR}` }];
+    return [{ ok: false, check, detail: `no SAP UI MCP extension connected to port ${r.port} within ${Math.round(waitMs / 1000)} s`, fix: `${INSTALL} Then: ${PAIR}` }];
   }
   const info = r.extensionInfo();
   const version = /(?:Chrome|Chromium)\/([\d.]+)/.exec(info.userAgent ?? "")?.[1];
@@ -250,13 +250,13 @@ export async function stopExtensionRelay(): Promise<void> {
 export function extensionPairCommand(env: Env = process.env): string[] {
   const { code, file } = readOrCreateCode(env);
   return [
-    "Pairing code for the UI Automation for SAP extension:",
+    "Pairing code for the SAP UI MCP extension:",
     "",
     `  ${formatCode(code)}`,
     "",
     file ? `It is kept in ${file} (readable only by you).` : "It comes from SAP_EXTENSION_CODE.",
-    "In Chrome, click the UI Automation for SAP extension's icon, open Pair with a code instead and paste the code. Pair once per Chrome profile.",
-    "Not installed yet? Add UI Automation for SAP from the Chrome Web Store (" + STORE_URL + "), then run `npx -y sap-ui-automation setup --extension`.",
+    "In Chrome, click the SAP UI MCP extension's icon, open Pair with a code instead and paste the code. Pair once per Chrome profile.",
+    "Not installed yet? Add SAP UI MCP from the Chrome Web Store (" + STORE_URL + "), then run `npx -y sap-ui-automation setup --extension`.",
   ];
 }
 

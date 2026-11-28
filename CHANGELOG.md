@@ -6,9 +6,13 @@ change the tools or the view format.
 
 ## Unreleased
 
-- The docs, MCP server, Registry manifest and Desktop bundle display the project name SAP UI MCP.
+### Changed
 
-- The docs, CLI help and agent skills use the package name `sap-ui-automation` for shell commands.
+- The product is now called SAP UI MCP, and the repository is
+  DidroAI/sap-ui-mcp. The npm package, the commands, the skills and the MCP
+  server id keep the name `sap-ui-automation`, so existing setups keep working.
+- Docs, CLI help and agent skills use `sap-ui-automation` for shell commands.
+- Chrome extension 0.4.4: named SAP UI MCP, with the new icon.
 
 ## 0.5.1
 
@@ -111,7 +115,7 @@ change the tools or the view format.
 - **`SAP_WRITE=confirm` is the default**, instead of `off`. Each action
   that may write waits for your yes, asked in the client (MCP elicitation)
   or, in a script, by `onConfirm`. A client that cannot ask (Claude
-  Desktop, Cursor, `claude -p`, `codex exec`), the agent CLI (`sap-ui-automation`),
+  Desktop, Cursor, `claude -p`, `codex exec`), the agent CLI (`sap-gui`),
   and a test or script without `onConfirm` still get every write refused;
   the refusal and the server's log say how to get writes.
 - To keep the old behaviour, set `SAP_WRITE=off`: read-only, every write
@@ -462,7 +466,7 @@ Preparing the first public release.
 
 ### Fixes
 
-- `sap-ui-automation test` loads `sap.config.ts` and `*.sap.ts` as ES modules in a
+- `sap-gui test` loads `sap.config.ts` and `*.sap.ts` as ES modules in a
   project whose `package.json` says `"type": "commonjs"` (what `npm init`
   writes). It used to fail with "Cannot use import statement outside a
   module".

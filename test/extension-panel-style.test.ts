@@ -91,7 +91,7 @@ describe("the side panel's look", () => {
   test("the product's own name and mark: no SAP logo or artwork", () => {
     for (const src of [html, js, icons]) expect(src).not.toMatch(/sap-logo|sapLogo|00b1eb/i);
     // A third party's name says "for SAP", never starts with it (SAP's trademark guidelines; the Web Store's impersonation policy).
-    expect(manifest.name).toBe("UI Automation for SAP");
+    expect(manifest.name).toBe("SAP UI MCP");
     expect(manifest.description).toContain("Not affiliated with SAP SE");
     expect(manifest.description.length).toBeLessThanOrEqual(132);
   });

@@ -1,4 +1,4 @@
-# UI Automation for SAP
+# SAP UI MCP
 
 The Chrome extension of [sap-ui-automation](../README.md). It keeps your
 SAP systems in one list, in the Chrome you use every day, and lets your
@@ -26,7 +26,7 @@ Fiori and SAP S/4HANA are trademarks of SAP SE.
 ## Install (Mac, Windows, Linux)
 
 Add it from the [Chrome Web Store](https://chromewebstore.google.com/detail/ui-automation-for-sap/geglpbkaklfpmnbidfcpflegmdkjodkn)
-(search for "UI Automation for SAP"), then run
+(search for "SAP UI MCP"), then run
 `npx -y sap-ui-automation setup --extension`: it sets up your agent apps
 and the skills, and installs the extension's helper. You need Node.js 22
 or later (`node --version` in a terminal; if it is missing, install it from
@@ -50,13 +50,13 @@ work on the extension):
 3. Click **Load unpacked** and pick that folder. On a Mac, press
    Cmd+Shift+G in the dialog and type `~/sap-ui-automation-extension`.
 4. Click the puzzle-piece icon in Chrome's toolbar, then the pin next to
-   **UI Automation for SAP**, so it is one click away. If Chrome
+   **SAP UI MCP**, so it is one click away. If Chrome
    was open while you ran step 1, restart it once (Chrome finds the helper
    at start).
 
 ## Pair
 
-Click the UI Automation for SAP icon: the extension opens as a side panel,
+Click the SAP UI MCP icon: the extension opens as a side panel,
 a column beside the page that stays open while you work. Click **Pair**.
 That's all: the helper gives the extension the code your agent's server uses.
 
@@ -176,7 +176,7 @@ in could show a password field of its own.
   acts, the server must prove that it holds the pairing code; after that,
   every message is encrypted and authenticated. Web pages cannot connect.
 - **The yellow bar.** While the agent works in your tabs, and while the
-  extension logs on, Chrome shows "UI Automation for SAP started
+  extension logs on, Chrome shows "SAP UI MCP started
   debugging this browser". Clicking **Cancel** there stops sharing until
   you click **Share again** in the side panel.
 - **"Chrome is being controlled by automated test software"** is not this
@@ -202,7 +202,7 @@ npx -y sap-ui-automation extension uninstall
 It removes the helper from every browser, the SAP passwords the extension
 saved in your keychain, and the folder it installed the extension to. The
 pairing code stays (in the server's settings folder), for the server. Then, in
-`chrome://extensions`, click **Remove** on UI Automation for SAP.
+`chrome://extensions`, click **Remove** on SAP UI MCP.
 (Removing the extension in Chrome alone leaves the keychain entries.)
 
 ## When it doesn't connect

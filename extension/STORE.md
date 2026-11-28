@@ -5,12 +5,12 @@ The extension is distributed unpacked until the first store release.
 
 ## Listing
 
-- **Name:** UI Automation for SAP
-- **Summary (132 characters max):** See what your local AI agent does in SAP, from Chrome's side panel. Passwords stay in your keychain. Not affiliated with SAP SE.
+- **Name:** SAP UI MCP
+- **Summary (132 characters max):** Let AI agents see and interact with SAP screens from Chrome. Passwords stay in your keychain. Not affiliated with SAP SE.
 - **Category:** Developer Tools (alternative: Workflow & Planning)
 - **Description:**
 
-  > UI Automation for SAP lets your AI agent work in SAP the way your team does: in Chrome, in Web GUI and Fiori, with your own logon and authorizations.
+  > SAP UI MCP lets your AI agent work in SAP the way your team does: in Chrome, in Web GUI and Fiori, with your own logon and authorizations.
   >
   > Hand it the repetitive work (looking up orders, checking documents, entering and updating data) and follow every step in a side panel next to your SAP tabs. Saves wait for your approval.
   >
@@ -73,9 +73,9 @@ local automation (such as Playwright's MCP bridge) follow the same model.
 
 ## Assets
 
-- Icon: `icons/128.png` (a navy tile with a softly lit pointer; no SAP
-  artwork or SAP blue). Every size (16, 32, 48, 128) is rendered from the
-  same drawing in `icons.js`.
+- Icon: `icons/128.png` (the SAP UI MCP icon: a navy tile with the SAP
+  logo and a pointer). Every size (16, 32, 48, 128) is scaled from
+  `assets/readme-icon.png`.
 - Screenshots (1280×800): the side panel beside a page (working, asking to
   save, logging on and a rejected password, first run, settings), made against made-up SAP
   pages for each release and placed on a plain background; never SAP's logo

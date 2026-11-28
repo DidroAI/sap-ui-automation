@@ -11,7 +11,7 @@ import { faqJsonLd, softwareJsonLd, writeLlmsTxt } from "./seo.mts";
 // site is served at: set DOCS_SITE_URL (for example https://example.com/sap-ui-automation) to get them.
 const SITE = process.env.DOCS_SITE_URL?.replace(/\/+$/, "");
 const NAME = "SAP UI MCP";
-const DESCRIPTION = "Let an AI agent see and drive the SAP screens you have open: SAP GUI for Windows, Web GUI and Fiori. Each write waits for your yes.";
+const DESCRIPTION = "Let an AI agent see and interact with the SAP screens you have open: SAP GUI for Windows, Web GUI and Fiori. Each write waits for your yes.";
 const VERSION: string = JSON.parse(readFileSync(new URL("../../package.json", import.meta.url), "utf8")).version;
 
 /** The page's address under SITE, as VitePress serves it with cleanUrls. */

@@ -1,8 +1,8 @@
-# Privacy policy: UI Automation for SAP
+# Privacy policy: SAP UI MCP
 
 *Last updated: 23 November 2026*
 
-UI Automation for SAP ("the extension") is the Chrome extension of
+SAP UI MCP ("the extension") is the Chrome extension of
 sap-ui-automation, an open-source program by Didro. It lets an AI agent that
 runs on your own computer open and work in the SAP systems you register.
 

@@ -20,7 +20,7 @@ on SAP GUI for HTML (Web GUI), SAP Fiori and SAP GUI for Windows.
 [Chrome extension](https://chromewebstore.google.com/detail/ui-automation-for-sap/geglpbkaklfpmnbidfcpflegmdkjodkn) ·
 [llms.txt](https://docs.didro.ai/llms.txt)
 
-<a href="https://www.youtube.com/watch?v=YwM0q31qy2k"><img src="https://img.youtube.com/vi/YwM0q31qy2k/maxresdefault.jpg" alt="Launch video: install with one command, then Codex works in two SAP sessions in parallel" width="720"></a>
+https://github.com/user-attachments/assets/d1cb2602-76b2-46d0-8757-982c35e9327d
 
 *Watch the launch video (8 min): the Chrome extension, one setup command, and Codex working in two SAP sessions at once.*
 
@@ -51,7 +51,7 @@ and the SDK for repeatable tests. [Benchmark and limitations](docs/benchmarks.md
 
 ## Quick start
 
-1. Add the [UI Automation for SAP](https://chromewebstore.google.com/detail/ui-automation-for-sap/geglpbkaklfpmnbidfcpflegmdkjodkn)
+1. Add the [SAP UI MCP](https://chromewebstore.google.com/detail/ui-automation-for-sap/geglpbkaklfpmnbidfcpflegmdkjodkn)
    extension to Chrome.
 2. Run one command (Node.js 22 or later):
 
@@ -77,7 +77,7 @@ recording, then replay it. [Example prompt](examples/prompts/record-a-test.md)
 Set up sap-ui-automation for me (npm package sap-ui-automation, https://github.com/DidroAI/sap-ui-mcp). Say what each command does before you run it, and wait for me when I have to click something.
 Rules: never type, ask for or store an SAP password, and never log on to SAP for me. Do not set or change SAP_WRITE. Do not save, post or change anything in SAP. Ask before you install software.
 1. Check node -v is 22 or later; if not, tell me how to install it and stop.
-2. Ask me to add the UI Automation for SAP extension to Chrome: https://chromewebstore.google.com/detail/ui-automation-for-sap/geglpbkaklfpmnbidfcpflegmdkjodkn and wait.
+2. Ask me to add the SAP UI MCP extension to Chrome: https://chromewebstore.google.com/detail/ui-automation-for-sap/geglpbkaklfpmnbidfcpflegmdkjodkn and wait.
 3. Run npx -y sap-ui-automation setup --extension --dry-run, show me the result, then run it without --dry-run. Tell me to restart Chrome once, then to click the extension's icon, click Pair and add my SAP systems, and wait.
 4. From here on, run commands with the environment variable SAP_BROWSER=extension (in the syntax of my shell). Run npx -y sap-ui-automation doctor. For each ✗, tell me what to do (the → line says it), wait, and run it again.
 5. Ask me to open an SAP screen, then run npx -y sap-ui-automation sessions. Verify the intended session with me if several match. Run npx -y sap-ui-automation look --session "<verified-id>" --print with its actual ID, and describe the screen in three lines.

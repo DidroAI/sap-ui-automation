@@ -206,7 +206,7 @@ machine with a desktop, or a Chrome installed from Google's package.
 
 ### Chrome extension: no extension connected
 
-**Symptom.** `✗ Chrome extension: no UI Automation for SAP extension
+**Symptom.** `✗ Chrome extension: no SAP UI MCP extension
 connected to port 47823 within 35 s` (`SAP_BROWSER=extension`).
 
 **Cause.** The extension is not installed or not paired, or Chrome is not

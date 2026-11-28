@@ -1,9 +1,9 @@
 {
   "manifest_version": 3,
-  "name": "UI Automation for SAP",
-  "short_name": "UI Automation",
-  "description": "See what your local AI agent does in SAP, from Chrome's side panel. Passwords stay in your keychain. Not affiliated with SAP SE.",
-  "version": "0.4.3",
+  "name": "SAP UI MCP",
+  "short_name": "SAP UI MCP",
+  "description": "Let AI agents see and interact with SAP screens from Chrome. Passwords stay in your keychain. Not affiliated with SAP SE.",
+  "version": "0.4.4",
   "minimum_chrome_version": "132",
   "homepage_url": "https://docs.didro.ai/sap-ui-automation/chrome-extension/",
   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0f5YzON/0m5BrZ7X3WT7ifetRTt4Y1kDwvdRgobedLOO3pgdTLO9VpzCundONd0hjLGSozgLlz/lYLHUI676CYyhzzOwkYZ6jT/rmMHka7RyHsw9g2J+9QVa0V4OKz2x2/mfPubfkU9LP4Jv9kaLCptYhDdkXggGlOGs5rXyvMp8NzclKlMdH1gNEOnJMp+1SvRx//6c2YewjlDkVtAbBTtsPmvewFasZ5uHWGvP8fC2EI+X7n+SUKNSgRVmuMV3C5ws/Ev995WL3bP4COVZY7YtxESkg7kBhUZst8tL2CypOzOxfg1Y9Az1ujYCRNeVM3+bbPB75Wptbq+qqRfpgQIDAQAB",
@@ -23,7 +23,7 @@
     "type": "module"
   },
   "action": {
-    "default_title": "UI Automation for SAP",
+    "default_title": "SAP UI MCP",
     "default_icon": {
       "16": "icons/16.png",
       "32": "icons/32.png"

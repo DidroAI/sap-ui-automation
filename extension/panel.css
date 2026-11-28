@@ -1,4 +1,4 @@
-/* UI Automation for SAP: the side panel's identity, "Ledger".
+/* SAP UI MCP: the side panel's identity, "Ledger".
 
    Idea      A well-made tool from a studio, calm beside SAP's grey: warm paper, dark ink, and one
              deep blue that says the agent is here, the blue of the mark.
@@ -132,7 +132,7 @@ svg { display: block; width: 16px; height: 16px; }
 /* ---------------------------------------------------------------- bar */
 
 .bar { height: 52px; flex-shrink: 0; display: flex; align-items: center; gap: 10px; padding: 0 8px 0 12px; }
-.mark svg { width: 24px; height: 24px; }
+.mark { display: block; width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0; }
 .mk-t0 { stop-color: var(--mark-tile-top); }
 .mk-t1 { stop-color: var(--mark-tile-bottom); }
 .mk-g0 { stop-color: var(--mark-glow); stop-opacity: 0.6; }

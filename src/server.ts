@@ -518,7 +518,7 @@ export function createServer({ policy, surfaces, view = "diff", record, code = c
   async function systemsHint(): Promise<string> {
     try {
       const list = await systems!.list();
-      if (!list.length) return "No system is registered in the Chrome extension either: ask the user to open SAP in Chrome and click Add this SAP page in the extension's side panel (the UI Automation for SAP icon in Chrome's toolbar).";
+      if (!list.length) return "No system is registered in the Chrome extension either: ask the user to open SAP in Chrome and click Add this SAP page in the extension's side panel (the SAP UI MCP icon in Chrome's toolbar).";
       return `Systems registered in the Chrome extension: ${list.map((x) => x.name).join(", ")}. sap_logon opens one and logs on.`;
     } catch (e) {
       return `(The Chrome extension did not answer: ${(e as Error).message})`;
@@ -538,7 +538,7 @@ export function createServer({ policy, surfaces, view = "diff", record, code = c
       () =>
         answer(async () => {
           const list = await systems.list();
-          if (!list.length) return text("No SAP system is registered in the Chrome extension. Ask the user to open their SAP system in Chrome and click Add this SAP page in the extension's side panel (the UI Automation for SAP icon in Chrome's toolbar). Never ask the user for a password.");
+          if (!list.length) return text("No SAP system is registered in the Chrome extension. Ask the user to open their SAP system in Chrome and click Add this SAP page in the extension's side panel (the SAP UI MCP icon in Chrome's toolbar). Never ask the user for a password.");
           const lines = list.map((x, i) => systemLine(x, i) + (systems.looksAt && !systems.looksAt(x.url) ? " Outside SAP_ALLOW_ORIGINS: this server does not look at its tabs." : ""));
           return text([...lines, "", "sap_logon opens one and logs on. Passwords stay in the extension: this server never sees them, and never asks the user for one."].join("\n"));
         }),

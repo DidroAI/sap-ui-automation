@@ -1,6 +1,6 @@
 {
   "name": "sap-ui-automation",
-  "description": "The sap-ui-automation plugin: an MCP server and a skill to see and drive SAP screens from Claude Code",
+  "description": "The sap-ui-automation plugin: an MCP server and a skill to see and interact with SAP screens from Claude Code",
   "owner": {
     "name": "Didro"
   },

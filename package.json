@@ -1,7 +1,7 @@
 {
   "name": "sap-ui-automation",
   "version": "0.5.1",
-  "description": "MCP server, CLI and SDK that let an AI agent see and drive SAP screens: SAP GUI for Windows, SAP GUI for HTML (Web GUI) and SAP Fiori, in a compact text view. Configurable write approvals.",
+  "description": "MCP server, CLI and SDK that let an AI agent see and interact with SAP screens: SAP GUI for Windows, SAP GUI for HTML (Web GUI) and SAP Fiori, in a compact text view. Configurable write approvals.",
   "license": "MIT",
   "author": "Didro",
   "keywords": [

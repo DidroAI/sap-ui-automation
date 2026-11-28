@@ -1,4 +1,4 @@
-// UI Automation for SAP (sap-ui-automation's Chrome extension): MV3 service worker.
+// SAP UI MCP (sap-ui-automation's Chrome extension): MV3 service worker.
 //
 // Keeps the user's SAP systems (name, address, client, language, user) and
 // their saved passwords, and logs on to them by filling SAP's logon page
@@ -1504,7 +1504,7 @@ function agentText(reason, sys, sapMessage = "", extra = {}) {
   const said = sapMessage ? ` SAP says: "${sapMessage}".` : "";
   switch (reason) {
     case "paused":
-      return "The user stopped sharing with Cancel on Chrome's debugging bar. Ask them to click Share again in the extension's side panel (the UI Automation for SAP icon in Chrome's toolbar), then call sap_logon again.";
+      return "The user stopped sharing with Cancel on Chrome's debugging bar. Ask them to click Share again in the extension's side panel (the SAP UI MCP icon in Chrome's toolbar), then call sap_logon again.";
     case "password_unreadable":
       return `The saved password of ${sys.name} could not be read${sys.passwordIn === "keychain" ? " from the keychain" : ""}. Ask the user to open the extension's side panel, edit ${sys.name} and save its password again.`;
     case "wrong_password":

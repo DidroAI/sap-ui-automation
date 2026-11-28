@@ -111,7 +111,7 @@ export async function extensionCommand(args: string[], out: (l: string) => void 
       return 1;
     }
     out("");
-    out(`Restart Chrome, then click the UI Automation for SAP icon (under the puzzle piece in Chrome's toolbar; pin it there) and Pair in the side panel.`);
+    out(`Restart Chrome, then click the SAP UI MCP icon (under the puzzle piece in Chrome's toolbar; pin it there) and Pair in the side panel.`);
     return 0;
   }
   if (sub === "install" || sub === "unpack") {
@@ -147,7 +147,7 @@ export async function extensionCommand(args: string[], out: (l: string) => void 
     out("");
     out(`In Chrome: open chrome://extensions, turn on Developer mode, click "Load unpacked" and pick ${to}.`);
     out(`(In the folder dialog on a Mac, press Cmd+Shift+G and type ${to}.)`);
-    out(paired ? `Then click the UI Automation for SAP icon (under the puzzle piece in Chrome's toolbar; pin it there) and Pair in the side panel.` : `Then run "npx -y sap-ui-automation extension pair" and paste the code into the extension's side panel.`);
+    out(paired ? `Then click the SAP UI MCP icon (under the puzzle piece in Chrome's toolbar; pin it there) and Pair in the side panel.` : `Then run "npx -y sap-ui-automation extension pair" and paste the code into the extension's side panel.`);
     out(`To update: run "npx -y sap-ui-automation@latest extension install" again, then click the reload arrow on the extension's card in chrome://extensions.`);
     return 0;
   }
@@ -164,7 +164,7 @@ export async function extensionCommand(args: string[], out: (l: string) => void 
       out(`Removed the extension's folder ${to}`);
     } else out(`No copy of the extension in ${to}. If you installed it elsewhere, run uninstall with that folder.`);
     out("");
-    out(`Last step, in Chrome: open chrome://extensions and click Remove on "UI Automation for SAP".`);
+    out(`Last step, in Chrome: open chrome://extensions and click Remove on "SAP UI MCP".`);
     return 0;
   }
   err(`Usage:\n${EXTENSION_HELP}`);

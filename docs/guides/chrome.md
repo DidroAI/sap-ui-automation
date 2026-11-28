@@ -1,6 +1,6 @@
 ---
 title: "SAP Web GUI and Fiori in Chrome for AI agents"
-description: "How the server reads and drives SAP GUI for HTML and SAP Fiori in Chrome: the SAP window, your own Chrome, or the UI Automation for SAP extension."
+description: "How the server reads and drives SAP GUI for HTML and SAP Fiori in Chrome: the SAP window, your own Chrome, or the SAP UI MCP extension."
 ---
 
 # Chrome: Web GUI and Fiori
@@ -20,7 +20,7 @@ the server in your MCP client, or in the shell before a CLI command.
 | --- | --- | --- | --- |
 | `launch` (default) | a Chrome window the server starts, with a profile of its own (the SAP window) | log on to SAP in that window | only that window |
 | `attach` | your running Chrome or Edge | allow remote debugging in `chrome://inspect` | every tab of that browser; it reads only SAP tabs |
-| `extension` | your everyday Chrome, through the UI Automation for SAP extension | install and pair the extension, register your SAP systems | only the tabs of the systems you registered |
+| `extension` | your everyday Chrome, through the SAP UI MCP extension | install and pair the extension, register your SAP systems | only the tabs of the systems you registered |
 
 - Start with `launch`: nothing to switch on in Chrome.
 - Use `extension` when you want your normal profile and its single sign-on,
@@ -106,7 +106,7 @@ and is likely to work. Firefox and Safari are not supported.
 ## Use your everyday Chrome with the extension
 
 With `SAP_BROWSER=extension` the server reaches your Chrome through the
-**UI Automation for SAP** extension: no `chrome://inspect` switch, your
+**SAP UI MCP** extension: no `chrome://inspect` switch, your
 normal profile with its single sign-on, and only the tabs of the SAP systems
 you register are shared. The extension can also keep your systems' logons:
 the agent can say "log on to ECC Dev", and the extension types the password
@@ -114,7 +114,7 @@ into SAP's logon page itself. The agent and the server never see it.
 
 ### Install the extension
 
-1. Add **UI Automation for SAP** to Chrome from the
+1. Add **SAP UI MCP** to Chrome from the
    [Chrome Web Store](https://chromewebstore.google.com/detail/ui-automation-for-sap/geglpbkaklfpmnbidfcpflegmdkjodkn).
 2. Run `npx -y sap-ui-automation setup --extension`. In one go it adds the
    server with `SAP_BROWSER=extension` to the coding agents it finds
@@ -139,7 +139,7 @@ install` again and click the reload arrow on the extension's card.
 
 ### Pair and register your systems
 
-1. Click the UI Automation for SAP icon: it opens a side panel beside the
+1. Click the SAP UI MCP icon: it opens a side panel beside the
    page. Click **Pair**. (Without the helper: run
    `npx -y sap-ui-automation extension pair`, open **Pair with a code
    instead** in the panel and paste the code.)
@@ -160,7 +160,7 @@ same system or another.
 
 The side panel shows what the agent does in SAP, step by step, and when it
 waits for your yes to save. While the server works in a tab, Chrome shows
-"UI Automation for SAP started debugging this browser". Clicking **Cancel**
+"SAP UI MCP started debugging this browser". Clicking **Cancel**
 there stops the sharing until you click **Share again** in the side panel.
 `npx -y sap-ui-automation extension uninstall` removes the helper, the
 saved passwords and the copied folder. See

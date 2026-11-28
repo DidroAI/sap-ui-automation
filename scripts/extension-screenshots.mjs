@@ -201,7 +201,7 @@ try {
     body{margin:0;width:440px;height:280px;display:grid;place-items:center;background:#f6f3ec;font-family:"DM Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;color:#1d1b17;-webkit-font-smoothing:antialiased}
     div{display:flex;align-items:center;gap:18px}img{display:block;width:72px;height:72px}
     h1{font-size:30px;line-height:1.1;margin:0;font-weight:600;letter-spacing:-0.035em}p{margin:4px 0 0;color:#857f72;font-size:18px;letter-spacing:-0.01em}</style>
-    <div><img src="http://127.0.0.1:${port}/icons/128.png" alt=""><span><h1>UI Automation</h1><p>for SAP</p></span></div>`);
+    <div><img src="http://127.0.0.1:${port}/icons/128.png" alt=""><span><h1>SAP UI MCP</h1><p>by Didro</p></span></div>`);
   await tile.waitForTimeout(300);
   await tile.screenshot({ path: join(out, "promo-440x280.png") });
   console.log(join(out, "promo-440x280.png"));
