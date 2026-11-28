@@ -17,7 +17,7 @@ body:
         - Web GUI or Fiori, the Chrome extension (SAP_BROWSER=extension)
         - SAP GUI for Windows, scripting
         - SAP GUI for Windows, network reader (DIAG)
-        - The sap-gui command line for agents
+        - The sap-ui-automation command line for agents
         - The SDK or the test runner
         - Adding the server to an MCP client (setup)
     validations:

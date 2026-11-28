@@ -182,7 +182,7 @@ export const OLD_SKILL_NAMES: Record<string, string> = { "sap-gui-drive": "sap-u
 /** Left in each skill folder setup writes, so that only those are replaced later. */
 export const SKILL_MARKER = ".sap-ui-automation";
 
-// SHA-256 of the SKILL.md files shipped in v0.1.0 through v0.5.0 and the
+// SHA-256 of the SKILL.md files shipped in v0.1.0 through v0.5.1 and the
 // two Cursor rules generated under the v0.1.0 names. Each skill in these
 // releases contained only SKILL.md.
 const releasedFiles: Record<string, readonly string[]> = {
@@ -190,8 +190,8 @@ const releasedFiles: Record<string, readonly string[]> = {
   "sap-gui-cli.mdc": ["742c2048e886e7715a598832df19928018da3ab9dcbf86d925e6c22bb6b9bce3"],
   "sap-gui-drive": ["5d893e47048c5f7142baf93999c2d65542562672544a2da16edc8f15402595ad"],
   "sap-gui-drive.mdc": ["6c8cef9f86694529fddf1e9ec50bbe863cf52869f29fb98e29277db7a516d2fc"],
-  "sap-ui-automation": ["1540fd97a95591af24d8172b340dc786b4c58d063d43f5723939ba8464865e50", "d1c782310d9c27d6613b3b647f700f460a3ab2fb8e8d36285e561d5781acd54c"],
-  "sap-ui-automation-cli": ["946fba483b3a535ebb0dac860df77032ffe4b34626ad8ea77c11167fb03ce44f", "b330a1f7430faaef60d5d3470d46e89f765c6544ba17a20ac86f39694b3afd0f"],
+  "sap-ui-automation": ["1540fd97a95591af24d8172b340dc786b4c58d063d43f5723939ba8464865e50", "d1c782310d9c27d6613b3b647f700f460a3ab2fb8e8d36285e561d5781acd54c", "76dd1ef884ee11b763c6ab3d1e1f59822b7d097996541b1c9b76b62bd6f59080"],
+  "sap-ui-automation-cli": ["946fba483b3a535ebb0dac860df77032ffe4b34626ad8ea77c11167fb03ce44f", "b330a1f7430faaef60d5d3470d46e89f765c6544ba17a20ac86f39694b3afd0f", "42eff1eec873d0e2071a90d9bc91c9348bbc21033c2505937ba52251c2be46e7"],
 };
 
 /** Read one regular file by its opened handle; a link or a changed entry cannot establish ownership. */

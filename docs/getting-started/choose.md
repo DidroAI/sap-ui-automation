@@ -56,7 +56,7 @@ Both methods run by default (`SAP_GUI_METHOD=auto`); set
 | Claude Code, Codex, Cursor, Claude Desktop, Windsurf, VS Code, Gemini CLI, Copilot CLI, OpenCode, Goose, Cline and [more](../reference/cli.md#the-agents) | `npx -y sap-ui-automation setup` adds the server and the skills to each one it finds. One client by hand: [Install in your client](installation.md) |
 | Claude Desktop, one click | the `.mcpb` file from the [latest release](https://github.com/DidroAI/sap-ui-mcp/releases/latest) ([details](installation.md#claude-desktop)) |
 | Another MCP client | a stdio server with the command `npx -y sap-ui-automation` ([details](installation.md#other-clients)) |
-| An agent with a shell and no MCP, or you want screens kept out of the chat | the `sap-gui` command line and its skill ([CLI for coding agents](../guides/cli-for-agents.md)) |
+| An agent with a shell and no MCP, or you want screens kept out of the chat | the `sap-ui-automation` command line and its skill ([CLI for coding agents](../guides/cli-for-agents.md)) |
 | No agent: scripts and tests in CI | the SDK and the test runner ([Writing tests](../guides/sdk-tests.md)), or replay what an agent recorded ([Recording and replay](../guides/record-replay.md)) |
 
 With `SAP_BROWSER=extension`, run `setup --extension` instead of `setup`.

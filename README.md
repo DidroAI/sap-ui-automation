@@ -188,8 +188,8 @@ network reader.
 
 ```sh
 npm install -g sap-ui-automation
-sap-gui look                              # the screen, written to a file
-sap-gui act set ctxtVBAK-VBELN 4711       # one action
+sap-ui-automation look                              # the screen, written to a file
+sap-ui-automation act set ctxtVBAK-VBELN 4711       # one action
 
 npm install --save-dev sap-ui-automation
 npx sap-ui-automation init                # sap.config.ts, an example test, skills

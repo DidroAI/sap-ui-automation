@@ -1,5 +1,5 @@
 /**
- * The daemon behind the agent CLI (`sap-gui look`, `sap-gui act` ...): one
+ * The daemon behind the agent CLI (`sap-ui-automation look`, `sap-ui-automation act` ...): one
  * long-lived process that keeps what a single MCP server keeps between
  * calls (the registry of sessions and their drivers, the Chrome connection,
  * the views an answer is diffed against, the recorder).
@@ -130,7 +130,7 @@ function privateDir(dir: string, platform: NodeJS.Platform): string {
   if (platform !== "win32") {
     const st = lstatSync(dir);
     const uid = process.getuid?.();
-    if (!st.isDirectory() || (uid !== undefined && st.uid !== uid)) throw new Error(`${dir} is not a directory of this user: the sap-gui daemon will not use it.`);
+    if (!st.isDirectory() || (uid !== undefined && st.uid !== uid)) throw new Error(`${dir} is not a directory of this user: the sap-ui-automation daemon will not use it.`);
     if ((st.mode & 0o077) !== 0) chmodSync(dir, 0o700);
   }
   return dir;
@@ -278,7 +278,7 @@ export async function startDaemon(o: DaemonOptions): Promise<Daemon> {
     // would silently drop the active session and an
     // open recording, and two agents in one directory with different
     // settings would keep restarting each other. It refuses, says which
-    // settings differ, and the caller stops it (`sap-gui daemon stop`) when
+    // settings differ, and the caller stops it (`sap-ui-automation daemon stop`) when
     // the new settings are meant. Stricter settings are refused as well:
     // equal is the only check that needs no judgement of what is looser.
     const differ = settingsDiff(settings, req.settings ?? {});
@@ -286,7 +286,7 @@ export async function startDaemon(o: DaemonOptions): Promise<Daemon> {
       return {
         ok: false,
         code: "settings",
-        error: `Not run: the sap-gui daemon for this directory runs with other settings than this call (${differ.join("; ")}). Run "sap-gui daemon stop", then repeat the call: a new daemon starts with this call's settings (the active session and an open recording are lost). Or call with the daemon's settings.`,
+        error: `Not run: the sap-ui-automation daemon for this directory runs with other settings than this call (${differ.join("; ")}). Run "sap-ui-automation daemon stop", then repeat the call: a new daemon starts with this call's settings (the active session and an open recording are lost). Or call with the daemon's settings.`,
       };
     calls++;
     lastCallAt = new Date();
@@ -462,16 +462,16 @@ export function send(path: string, req: Request): Promise<Response> {
     s.on("data", (c: string) => (buf += c));
     s.once("error", (e: NodeJS.ErrnoException) => {
       if (!connected) reject(new DaemonUnreachable(e.code ?? e.message));
-      else reject(new Error(`The sap-gui daemon broke off the call (${e.message}).`));
+      else reject(new Error(`The sap-ui-automation daemon broke off the call (${e.message}).`));
     });
     s.once("close", () => {
       if (!connected) return;
       const line = buf.split("\n")[0] ?? "";
-      if (!line) return reject(new Error("The sap-gui daemon closed without answering (it may have been stopped during the call)."));
+      if (!line) return reject(new Error("The sap-ui-automation daemon closed without answering (it may have been stopped during the call)."));
       try {
         resolveIt(JSON.parse(line) as Response);
       } catch {
-        reject(new Error("The sap-gui daemon answered something that is not JSON."));
+        reject(new Error("The sap-ui-automation daemon answered something that is not JSON."));
       }
     });
   });

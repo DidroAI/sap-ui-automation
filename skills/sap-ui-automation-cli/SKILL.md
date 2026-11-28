@@ -1,11 +1,11 @@
 ---
 name: sap-ui-automation-cli
-description: Works in SAP from the shell with the sap-gui command of sap-ui-automation (sap-gui look, act, okcode, sessions). Opens transactions, reads and fills screens, reads ALV lists, looks up, creates or changes documents, in SAP GUI for Windows, Web GUI (SAP GUI for HTML) and Fiori, on ECC or S/4HANA. Use this skill whenever the user wants something looked up, checked, created or changed in SAP and there are no sap_* tools in your tool list but you can run shell commands, or when the user asks for the sap-gui CLI. It applies even if the user names no tool or says only a transaction code (VA03, ME23N, MM03, FB03, MIGO) or a business object (sales order, purchase order, material, customer, vendor, invoice, delivery, goods receipt, Fiori app).
+description: Works in SAP from the shell with the sap-ui-automation CLI (look, act, okcode, sessions). Opens transactions, reads and fills screens, reads ALV lists, looks up, creates or changes documents, in SAP GUI for Windows, Web GUI (SAP GUI for HTML) and Fiori, on ECC or S/4HANA. Use this skill whenever the user wants something looked up, checked, created or changed in SAP and there are no sap_* tools in your tool list but you can run shell commands, or when the user asks for the sap-ui-automation CLI. It applies even if the user names no tool or says only a transaction code (VA03, ME23N, MM03, FB03, MIGO) or a business object (sales order, purchase order, material, customer, vendor, invoice, delivery, goods receipt, Fiori app).
 ---
 
-# Driving SAP screens with the `sap-gui` CLI
+# Driving SAP screens with the `sap-ui-automation` CLI
 
-`sap-gui` works in the SAP sessions the user has open, as that user and
+`sap-ui-automation` works in the SAP sessions the user has open, as that user and
 under their authorisations. It never logs on: with no session open, ask the
 user to open SAP. `npx -y sap-ui-automation <command>` is the same program.
 
@@ -14,7 +14,7 @@ with the whole screen. `act`, `okcode` and `open` print their whole answer:
 what ran, then the new screen, or only the lines that changed.
 
 ```
-$ sap-gui act set ctxtVBAK-AUART OR
+$ sap-ui-automation act set ctxtVBAK-AUART OR
 set ctxtVBAK-AUART
 
 CHANGED 1 of 48 lines on VA01 · "Create Standard Order: Overview" (same screen; sap_look shows all of it):
@@ -27,8 +27,8 @@ find an id, read values or see a list.
 
 ## One screen, one command
 
-1. **Identify the target.** List sessions with `sap-gui sessions`, then inspect the intended
-   screen using `sap-gui look --session <id> --print`. Check system, client, user, transaction and any
+1. **Identify the target.** List sessions with `sap-ui-automation sessions`, then inspect the intended
+   screen using `sap-ui-automation look --session <id> --print`. Check system, client, user, transaction and any
    popup. If the target disappears, list sessions again and verify the new id.
    Keep existing work intact. To start another transaction use a fresh session
    (`/oVA03` for VA03 on SAP GUI or Web GUI). Use `/n` only in a known clean
@@ -37,7 +37,7 @@ find an id, read values or see a list.
    submits them, as one JSON list in single quotes.
 
    ```sh
-   sap-gui act --session '<verified-id>' '[{"do":"set","id":"ctxtVBAK-AUART","value":"OR"},{"do":"set","id":"ctxtVBAK-VKORG","value":"1000"},{"do":"key","key":0}]'
+   sap-ui-automation act --session '<verified-id>' '[{"do":"set","id":"ctxtVBAK-AUART","value":"OR"},{"do":"set","id":"ctxtVBAK-VKORG","value":"1000"},{"do":"key","key":0}]'
    ```
 
 3. **Read the answer, not the screen again.** It prints what ran, then the
@@ -64,18 +64,18 @@ A `look` right after an `act`, on the same screen, prints only
 ## Commands
 
 ```
-sap-gui sessions                       the open sessions; * marks the active one
-sap-gui use <n|id|system|tcode>        make one the active session
-sap-gui look [--full] [--diff]         the screen (file); --print prints it
-sap-gui look --id <id> [--rows 100-150] [--cols VBELN,NETWR]   one control whole, a range of rows
-sap-gui look --id mbar | --id 'menu[2]'   the menus and their entries; one menu whole
-sap-gui act '<json>' [--full]          one action (below); '[...]' one screen's actions (20 at most)
-sap-gui okcode </nVA03>                same as act okcode: starts a transaction (no Enter after it)
-sap-gui open <'#Intent-action'>        same as act open: a Fiori launchpad app
-sap-gui screenshot                     a PNG (charts, HTML panels the text cannot show)
-sap-gui record start "<name>" | assert '<json>' | stop | list | status   a repeatable test
-sap-gui replay <file>                  run a recorded test again, no model
-sap-gui daemon status | stop
+sap-ui-automation sessions                       the open sessions; * marks the active one
+sap-ui-automation use <n|id|system|tcode>        make one the active session
+sap-ui-automation look [--full] [--diff]         the screen (file); --print prints it
+sap-ui-automation look --id <id> [--rows 100-150] [--cols VBELN,NETWR]   one control whole, a range of rows
+sap-ui-automation look --id mbar | --id 'menu[2]'   the menus and their entries; one menu whole
+sap-ui-automation act '<json>' [--full]          one action (below); '[...]' one screen's actions (20 at most)
+sap-ui-automation okcode </nVA03>                same as act okcode: starts a transaction (no Enter after it)
+sap-ui-automation open <'#Intent-action'>        same as act open: a Fiori launchpad app
+sap-ui-automation screenshot                     a PNG (charts, HTML panels the text cannot show)
+sap-ui-automation record start "<name>" | assert '<json>' | stop | list | status   a repeatable test
+sap-ui-automation replay <file>                  run a recorded test again, no model
+sap-ui-automation daemon status | stop
 ```
 
 `look`, `act`, `okcode`, `open`, `screenshot` and `record` take
@@ -128,11 +128,11 @@ Everything else is JSON:
 
 ## Several sessions
 
-`sap-gui okcode /oVA03` opens another session of the same logon (SAP GUI
+`sap-ui-automation okcode /oVA03` opens another session of the same logon (SAP GUI
 and Web GUI), and that session becomes the active one. Send it on its own:
 inside a list it is refused. Then pass `--session <id>` on every command
 instead of relying on the active session. A Web GUI session that
-`sap-gui sessions` marks "not verified" is still loading or shows a popup:
+`sap-ui-automation sessions` marks "not verified" is still loading or shows a popup:
 list again before you work in it.
 
 A logon has a limit of sessions (6 unless the system sets another). When
@@ -152,7 +152,7 @@ user's `SAP_WRITE` setting decides what happens:
   check. Before a save the user has not asked for, describe it in plain
   words. Afterwards say what you saved, with the document number.
 
-Save with `sap-gui act key 11` on every surface (in Web GUI the CLI presses
+Save with `sap-ui-automation act key 11` on every surface (in Web GUI the CLI presses
 the toolbar's Save button for it).
 
 Never work around the setting, for example with a save code in the command
@@ -162,4 +162,4 @@ repeat what is already set. Report a refused write to the user, who decides.
 
 The CLI keeps a background daemon per directory, started on the first call
 with that call's `SAP_*` settings. A call with other settings is refused.
-Run `sap-gui daemon stop` only when the user asked for the new settings.
+Run `sap-ui-automation daemon stop` only when the user asked for the new settings.

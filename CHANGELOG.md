@@ -11,6 +11,7 @@ change the tools or the view format.
 - The product is now called SAP UI MCP, and the repository is
   DidroAI/sap-ui-mcp. The npm package, the commands, the skills and the MCP
   server id keep the name `sap-ui-automation`, so existing setups keep working.
+- Docs, CLI help and agent skills use `sap-ui-automation` for shell commands.
 - Chrome extension 0.4.4: named SAP UI MCP, with the new icon.
 
 ## 0.5.1
@@ -185,7 +186,7 @@ change the tools or the view format.
   other agent's folder (a copy where no link can be made). A rerun updates
   the copy in place.
 - Config files keep their comments and layout where setup adds the server.
-- For agents setup does not know, `npx skills add DidroAI/sap-ui-automation`
+- For agents setup does not know, `npx skills add DidroAI/sap-ui-mcp`
   installs the skills.
 
 ## 0.3.1 (2026-11-26)

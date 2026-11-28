@@ -150,7 +150,7 @@ agent that can run shell commands (Bash in Claude Code, Codex, Cursor) can
 start the agent CLI with `SAP_WRITE=on` in front of the command itself.
 The CLI cannot tell who set it. The bundled skills tell the agent never to
 set `SAP_*` itself, but only your approval of each command actually stops
-it: do not auto-approve `sap-gui` commands, or shell commands in general,
+it: do not auto-approve `sap-ui-automation` commands, or shell commands in general,
 when the agent works on a system where writes matter. The same applies to
 an agent that can edit its MCP client's configuration.
 

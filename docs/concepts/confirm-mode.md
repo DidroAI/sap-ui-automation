@@ -47,7 +47,7 @@ source. Clients change quickly: try a harmless write on a test system first.
 | Cursor | supported since 1.5, unreliable | Users report the question never showing on Windows, its buttons hidden until the tool row is expanded, and a timeout of about a minute. Test it before relying on it; a question that is not shown is a write that does not run. |
 | Claude Desktop | not documented | No statement either way for the chat. With `confirm`, a write is refused if Claude Desktop does not ask; set `off` to make it read-only and drop the note. |
 | Windsurf / Devin Desktop | not checked | Try a harmless write on a test system first, or set `off`. |
-| The agent CLI (`sap-gui act`) | no | It cannot ask: writes need `SAP_WRITE=on`. |
+| The agent CLI (`sap-ui-automation act`) | no | It cannot ask: writes need `SAP_WRITE=on`. |
 
 Sources: the [Claude Code changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
 and [MCP docs](https://code.claude.com/docs/en/mcp);

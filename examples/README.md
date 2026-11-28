@@ -23,6 +23,6 @@ A test recorded with `sap_record` and replayed without a model: [recorded-test/]
 ## SDK
 
 - [sdk/check-order.ts](sdk/check-order.ts): a script that attaches to an open Web GUI session and checks an order in VA03.
-- [sdk/va03.sap.ts](sdk/va03.sap.ts): the same check as a test for `sap-gui test`.
+- [sdk/va03.sap.ts](sdk/va03.sap.ts): the same check as a test for `sap-ui-automation test`.
 
 See [Writing tests with the SDK](../docs/guides/sdk-tests.md). These need the SDK and the test runner, which ship with the next version.

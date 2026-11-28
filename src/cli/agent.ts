@@ -2,11 +2,11 @@
  * The agent CLI: the MCP tools as shell commands, for coding agents that
  * have a shell (Claude Code, Codex, Cursor).
  *
- *   sap-gui look            → sap_look       sap-gui act '<json>'  → sap_act ('[...]': "actions")
- *   sap-gui use <ref>       → sap_use
- *   sap-gui screenshot      → sap_screenshot sap-gui record <op>   → sap_record
- *   sap-gui sessions        → sap_sessions (through a running daemon; else the one-shot listing)
- *   sap-gui daemon status|stop
+ *   sap-ui-automation look            → sap_look       sap-ui-automation act '<json>'  → sap_act ('[...]': "actions")
+ *   sap-ui-automation use <ref>       → sap_use
+ *   sap-ui-automation screenshot      → sap_screenshot sap-ui-automation record <op>   → sap_record
+ *   sap-ui-automation sessions        → sap_sessions (through a running daemon; else the one-shot listing)
+ *   sap-ui-automation daemon status|stop
  *
  * `act` (and `okcode`, `open`) prints sap_act's whole answer, as an MCP
  * client gets it: the notes, then the lines that changed or the new screen.
@@ -38,17 +38,17 @@ import {
 } from "./daemon.js";
 
 export const AGENT_HELP = `Agent CLI (look prints a short summary and writes the whole screen to a file; act prints its whole answer, as sap_act gives it):
-  sap-gui look [--full] [--diff] [--id <id> [--rows 0-50] [--cols A,B]] [--print]
-  sap-gui act '<json action>' [--full]     e.g. act '{"do":"set","id":"ctxtVBAK-VBELN","value":"4711"}'
-  sap-gui act '[<json action>, ...]'       one screen's actions in one call, e.g. act '[{"do":"set","id":"ctxtVBAK-VKORG","value":"1000"},{"do":"key","key":0}]'
-  sap-gui act set <id> <value> | press <id> | key <n> | okcode <cmd> | select <id> | check <id> [true|false]
+  sap-ui-automation look [--full] [--diff] [--id <id> [--rows 0-50] [--cols A,B]] [--print]
+  sap-ui-automation act '<json action>' [--full]     e.g. act '{"do":"set","id":"ctxtVBAK-VBELN","value":"4711"}'
+  sap-ui-automation act '[<json action>, ...]'       one screen's actions in one call, e.g. act '[{"do":"set","id":"ctxtVBAK-VKORG","value":"1000"},{"do":"key","key":0}]'
+  sap-ui-automation act set <id> <value> | press <id> | key <n> | okcode <cmd> | select <id> | check <id> [true|false]
               | combo <id> [key] | f4 <id> | dblclick <id> | scroll <id> <to> | open <intent>    shorthand for one action
-  sap-gui okcode <cmd>                     same as act okcode <cmd>, e.g. okcode /nVA03 (it submits: no Enter after it)
-  sap-gui open <intent>                    same as act open <intent>: a Fiori app, e.g. open '#SalesOrder-manage'
-  sap-gui use <ref>                        make a session the active one (sessions lists them)
-  sap-gui screenshot                       a PNG of the session's window or tab
-  sap-gui record <op> ['<json>']           start <name>, assert '{"check":"status","contains":"saved"}', stop, list, ...
-  sap-gui daemon status|stop               the background process that keeps the SAP connection
+  sap-ui-automation okcode <cmd>                     same as act okcode <cmd>, e.g. okcode /nVA03 (it submits: no Enter after it)
+  sap-ui-automation open <intent>                    same as act open <intent>: a Fiori app, e.g. open '#SalesOrder-manage'
+  sap-ui-automation use <ref>                        make a session the active one (sessions lists them)
+  sap-ui-automation screenshot                       a PNG of the session's window or tab
+  sap-ui-automation record <op> ['<json>']           start <name>, assert '{"check":"status","contains":"saved"}', stop, list, ...
+  sap-ui-automation daemon status|stop               the background process that keeps the SAP connection
   look, act, okcode, open, screenshot and record take --session <ref>. Exit code: 0 done, 1 error or refused, 2 usage.
   Writes need SAP_WRITE=on here: the CLI cannot ask the user, so confirm refuses them; your own command approval is the confirmation.
   SAP_CLI_DIR=dir       where answers go (default .sap-gui/screens); SAP_CLI_IDLE=30  minutes before the daemon exits
@@ -59,7 +59,7 @@ export interface AgentContext {
   cwd: string;
   out: (line: string) => void;
   err: (line: string) => void;
-  /** Starts a daemon when none answers. Default: `sap-gui daemon run`, detached. */
+  /** Starts a daemon when none answers. Default: `sap-ui-automation daemon run`, detached. */
   start?: (address: DaemonAddress, ctx: AgentContext) => Promise<void> | void;
   /** How long a starting daemon has to answer. */
   startTimeoutMs?: number;
@@ -193,7 +193,7 @@ function callOf(cmd: string, p: Parsed): Call {
     case "use": {
       only(p, ["print"], cmd);
       const ref = p.positional[0];
-      if (!ref || p.positional.length > 1) throw new Usage("use takes one session: a number, id, system, transaction, or sapgui, webgui, fiori (sap-gui sessions lists them).");
+      if (!ref || p.positional.length > 1) throw new Usage("use takes one session: a number, id, system, transaction, or sapgui, webgui, fiori (sap-ui-automation sessions lists them).");
       return { tool: "sap_use", args: { session: ref }, kind: "screen", print, tag: cmd };
     }
     case "look": {
@@ -240,10 +240,10 @@ function callOf(cmd: string, p: Parsed): Call {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-/** Starts `sap-gui daemon run` in the background, detached from this call, with this call's environment. */
+/** Starts `sap-ui-automation daemon run` in the background, detached from this call, with this call's environment. */
 function spawnDaemon(address: DaemonAddress, ctx: AgentContext): void {
   const entry = process.argv[1];
-  if (!entry) throw new Error("Cannot tell how this CLI was started: start the daemon with sap-gui daemon run.");
+  if (!entry) throw new Error("Cannot tell how this CLI was started: start the daemon with sap-ui-automation daemon run.");
   const log = openSync(address.logFile, "a", 0o600);
   try {
     const child = spawn(process.execPath, [...process.execArgv, entry, "daemon", "run"], {
@@ -288,7 +288,7 @@ async function request(address: DaemonAddress, make: (token: string) => Request,
       deadline = Date.now() + wait;
       await (ctx.start ?? spawnDaemon)(address, ctx);
     } else if (Date.now() > deadline) {
-      throw new Error(`The sap-gui daemon did not start within ${Math.round(wait / 1000)} s. Its log: ${address.logFile}`);
+      throw new Error(`The sap-ui-automation daemon did not start within ${Math.round(wait / 1000)} s. Its log: ${address.logFile}`);
     }
     await sleep(50);
   }
@@ -417,7 +417,7 @@ export async function agentCommand(argv: string[], ctx: AgentContext): Promise<n
       ctx.err(r.error);
       return 1;
     }
-    if (!("result" in r)) throw new Error("The sap-gui daemon answered something else than a result.");
+    if (!("result" in r)) throw new Error("The sap-ui-automation daemon answered something else than a result.");
     return present(call, r.result, ctx);
   } catch (e) {
     if (e instanceof Usage) {
@@ -486,41 +486,41 @@ async function daemonCommand(argv: string[], ctx: AgentContext): Promise<number>
   const address = daemonAddress(ctx.env, ctx.cwd);
   if (sub === "status") {
     const r = await request(address, (token) => ({ token, op: "status" }), ctx, false);
-    if (!r) return ctx.out("No sap-gui daemon runs for this directory."), 0;
+    if (!r) return ctx.out("No sap-ui-automation daemon runs for this directory."), 0;
     if (!r.ok || !("status" in r)) return ctx.err(r.ok ? "Unexpected answer." : r.error), 1;
     const s = r.status;
     const settings = Object.entries(shownSettings(s.settings)).map(([k, v]) => `${k}=${v}`).join(" ") || "(no SAP_* setting: SAP_WRITE is confirm, the default; the CLI cannot ask, so writes are refused)";
-    ctx.out(`sap-gui daemon ${s.version}, pid ${s.pid}, for ${s.cwd}; since ${s.startedAt}, ${s.calls} call(s), last ${s.lastCallAt}; exits after ${s.idleExitMinutes} min without a call.`);
+    ctx.out(`sap-ui-automation daemon ${s.version}, pid ${s.pid}, for ${s.cwd}; since ${s.startedAt}, ${s.calls} call(s), last ${s.lastCallAt}; exits after ${s.idleExitMinutes} min without a call.`);
     ctx.out(`settings: ${settings}`);
     return 0;
   }
   if (sub === "stop") {
     const r = await request(address, (token) => ({ token, op: "stop" }), ctx, false);
-    if (!r) return ctx.out("No sap-gui daemon runs for this directory."), 0;
+    if (!r) return ctx.out("No sap-ui-automation daemon runs for this directory."), 0;
     if (!r.ok) return ctx.err(r.error), 1;
-    ctx.out("sap-gui daemon stopped.");
+    ctx.out("sap-ui-automation daemon stopped.");
     return 0;
   }
   if (sub === "run") return runDaemon(address, ctx);
   throw new Usage(`daemon takes status or stop${sub ? `, not "${sub}"` : ""}.`);
 }
 
-/** `sap-gui daemon run`: the daemon in this process, until it is stopped, idles out or gets a signal. */
+/** `sap-ui-automation daemon run`: the daemon in this process, until it is stopped, idles out or gets a signal. */
 async function runDaemon(address: DaemonAddress, ctx: AgentContext): Promise<number> {
   let daemon;
   try {
     daemon = await startDaemon({ address, env: ctx.env, cwd: ctx.cwd, surfaces: surfacesFromEnv(ctx.env), idleMs: idleMsFromEnv(ctx.env) });
   } catch (e) {
     // Another call started one first: that one serves.
-    if ((e as NodeJS.ErrnoException).code === "EADDRINUSE") return ctx.err("A sap-gui daemon already runs for this directory."), 0;
+    if ((e as NodeJS.ErrnoException).code === "EADDRINUSE") return ctx.err("A sap-ui-automation daemon already runs for this directory."), 0;
     throw e;
   }
-  ctx.err(`sap-gui daemon pid ${process.pid} listening on ${address.path} (${new Date().toISOString()})`);
+  ctx.err(`sap-ui-automation daemon pid ${process.pid} listening on ${address.path} (${new Date().toISOString()})`);
   const stop = () => void daemon.close();
   process.on("SIGINT", stop);
   process.on("SIGTERM", stop);
   await daemon.closed;
   await disconnectChrome().catch(() => {});
-  ctx.err(`sap-gui daemon pid ${process.pid} exited (${new Date().toISOString()})`);
+  ctx.err(`sap-ui-automation daemon pid ${process.pid} exited (${new Date().toISOString()})`);
   return 0;
 }

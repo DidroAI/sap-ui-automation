@@ -204,7 +204,7 @@ describe("confirm", () => {
     surface.add({ id: "chrome:1", system: "XYZ", transaction: "ZT01" }, { view: SCREEN, assess });
     const look = await run(["look"]);
     expect(look.code).toBe(0);
-    expect(look.lines[0]).toStartWith("NOTE: writing is set to confirm, and the sap-gui CLI cannot ask the user");
+    expect(look.lines[0]).toStartWith("NOTE: writing is set to confirm, and the sap-ui-automation CLI cannot ask the user");
     const r = await run(["act", "key", "11"]);
     expect(r.code).toBe(1);
     expect(r.err).toContain("cannot ask the user");
@@ -252,7 +252,7 @@ describe("the daemon's settings", () => {
     const looser = await run(["act", "key", "11"], { SAP_WRITE: "on" });
     expect(looser.code).toBe(1);
     expect(looser.err).toContain('SAP_WRITE: daemon unset, this call "on"');
-    expect(looser.err).toContain("sap-gui daemon stop");
+    expect(looser.err).toContain("sap-ui-automation daemon stop");
     // Stricter, or only different: refused too.
     expect((await run(["look"], { SAP_ALLOW_TCODES: "VA03" })).code).toBe(1);
     expect(surface.acts()).toEqual([]);
@@ -264,9 +264,9 @@ describe("the daemon's settings", () => {
     surface.add({ id: "chrome:1", system: "XYZ" }, { view: SCREEN, assess });
     await run(["look"]);
     expect((await run(["daemon", "status"])).lines[1]).toBe("settings: SAP_RECORD_DIR=" + daemons[0]!.status().settings.SAP_RECORD_DIR);
-    expect((await run(["daemon", "stop"])).out).toBe("sap-gui daemon stopped.");
+    expect((await run(["daemon", "stop"])).out).toBe("sap-ui-automation daemon stopped.");
     await daemons[0]!.closed;
-    expect((await run(["daemon", "status"])).out).toBe("No sap-gui daemon runs for this directory.");
+    expect((await run(["daemon", "status"])).out).toBe("No sap-ui-automation daemon runs for this directory.");
     const r = await run(["act", "key", "11"], { SAP_WRITE: "on" });
     expect(r.code).toBe(0);
     expect(daemons).toHaveLength(2);
@@ -329,7 +329,7 @@ describe("the daemon's life", () => {
     // The second call put the idle time back to its start.
     expect(closed).toBe(false);
     await daemons[0]!.closed;
-    expect((await run(["daemon", "status"])).out).toBe("No sap-gui daemon runs for this directory.");
+    expect((await run(["daemon", "status"])).out).toBe("No sap-ui-automation daemon runs for this directory.");
   });
   test("a line that is not JSON does not stop the idle exit", async () => {
     const { surface, run, daemons, base, dir } = setup({}, 150);

@@ -112,13 +112,15 @@ jobs:
           npm init -y > /dev/null
           npm install --no-audit --no-fund "../$tgz"
           npx --no-install sap-ui-automation --version
+          # Existing scripts can still invoke the compatibility alias.
+          npx --no-install sap-gui --version
           node --input-type=module -e 'await import("sap-ui-automation"); console.log("library entry imports")'
           node --input-type=module -e 'await import("sap-ui-automation/test"); console.log("test entry imports")'
           echo "::endgroup::"
           # npm init writes "type": "commonjs": the TypeScript config and tests must still load.
           echo "::group::init --yes, then the runner lists the example test"
-          npx --no-install sap-gui init --yes
-          npx --no-install sap-gui test --list | tee "$RUNNER_TEMP/list.txt"
+          npx --no-install sap-ui-automation init --yes
+          npx --no-install sap-ui-automation test --list | tee "$RUNNER_TEMP/list.txt"
           grep -q "SU3 shows my user" "$RUNNER_TEMP/list.txt"
           echo "::endgroup::"
       # The built server against the fake SAP GUI (COM, through Windows PowerShell).

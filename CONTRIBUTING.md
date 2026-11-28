@@ -22,7 +22,7 @@ CI runs 22 and 24).
 
 ```sh
 git clone https://github.com/DidroAI/sap-ui-mcp.git
-cd sap-ui-automation
+cd sap-ui-mcp
 bun install --frozen-lockfile
 bun run typecheck
 bun run test
@@ -302,6 +302,11 @@ The [pull request template](.github/PULL_REQUEST_TEMPLATE.md) holds the same
 list.
 
 ## Releasing (maintainers)
+
+The npm package is `sap-ui-automation`. Its trusted publisher on npm must
+point to GitHub repository `DidroAI/sap-ui-mcp`, workflow `release.yml`,
+environment `npm`. A maintainer can check it with
+`npm trust list sap-ui-automation` before tagging a release.
 
 1. Set the version in `package.json`, `server.json` (twice),
    `mcpb/manifest.json`, `.claude-plugin/plugin.json`, and `SERVER_VERSION`

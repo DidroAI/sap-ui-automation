@@ -37,7 +37,7 @@ body:
         - The Chrome extension (SAP_BROWSER=extension)
         - Record and replay, or export
         - SDK or test runner
-        - Command line (setup, doctor, sessions, sap-gui)
+        - sap-ui-automation CLI (setup, doctor, sessions)
         - Not specific to a surface
     validations:
       required: true

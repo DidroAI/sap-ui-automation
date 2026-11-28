@@ -36,8 +36,7 @@ commands: [Configuration](configuration.md). `doctor`, `sessions` and
 `replay` use `SAP_SURFACES`, `SAP_GUI_METHOD`, `SAP_CHROME_CDP`,
 `SAP_ALLOW_SYSTEMS` and the other settings as the server would.
 
-The program is also installed as `sap-gui`. With the SDK and the test
-runner come these commands, described in their guides:
+The following commands support project setup, testing, and interactive use:
 
 | Command | Does | Guide |
 | --- | --- | --- |
